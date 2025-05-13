@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block content %}
+<div class="actions">
+  <a href="{{ url_for('add') }}" class="btn">Add New Beach</a>
+</div>
+
+<div class="beaches">
+  {% if beaches %}
+  <table>
+    <thead>
+      <tr>
+        <th>Beach Name</th>
+        <th>Spot Type</th>
+        <th>Wave</th>
+        <th>Offshore</th>
+        <th>Tide</th>
+        <th>Level</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for beach in beaches %}
+      <tr>
+        <td>{{ beach['name'] }}</td>
+        <td>{{ beach['spot_type'] }}</td>
+        <td>{{ beach['wave'] }}</td>
+        <td>{{ beach['offshore'] }}</td>
+        <td>{{ beach['tide'] }}</td>
+        <td>{{ beach['level'] }}</td>
+        <td class="actions">
+          <a href="{{ url_for('edit', id=beach['id']) }}" class="btn edit"
+            >Edit</a
+          >
+          <form
+            action="{{ url_for('delete', id=beach['id']) }}"
+            method="post"
+            class="inline"
+          >
+            <button
+              type="submit"
+              class="btn delete"
+              onclick="return confirm('Are you sure you want to delete this beach?')"
+            >
+              Delete
+            </button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="empty">No beaches found. Add a new beach to get started!</p>
+  {% endif %}
+</div>
+{% endblock %}
