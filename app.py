@@ -18,9 +18,16 @@ def init_db():
             conn.executescript(f.read())
         conn.close()
 
-@app.before_first_request
-def before_first_request():
-    init_db()
+# Workaround for before_first_request issue
+first_request = True
+
+@app.before_request
+def initialize_db():
+    global first_request
+    if first_request:
+        print("Initializing database before first request...")
+        init_db()
+        first_request = False
 
 # Routes
 @app.route('/')
