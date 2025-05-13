@@ -8,6 +8,8 @@ This project is my third submission for the Code Institute Web Application Devel
 
 ![Beach Surf Database Screenshot](static/img/banner.jpg)
 
+Available at https://onthedrop-f85390978add.herokuapp.com/
+
 - Project Development & Planning - Project Goals
 - Background
 - - User Stories
@@ -119,26 +121,20 @@ Typography:
 
 1. Clone the repository
 2. Install required dependencies:
-   ```
    pip install flask
-   ```
 3. Run the application:
-   ```
    python app.py
-   ```
 4. Access the application at http://127.0.0.1:5000
 
 ### Production Deployment
 
 Heroku
 
-1. Set `debug=False` in app.py
+1. Ensure `debug=False` in app.py
 2. Create app in Heroku
 3. Create config variables
-4. Link git to Heroku
-5. Create a requirements.txt file and Python version file
-6. Create Procfule
-7. The application is available at https://onthedrop-f85390978add.herokuapp.com/
+4. Clone repo and link git to Heroku
+5. The application is available at https://onthedrop-f85390978add.herokuapp.com/
 
 ## Technologies Used
 
