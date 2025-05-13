@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beach Surf Database</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="banner">
+        <img
+          src="{{ url_for('static', filename='img/banner.jpg') }}"
+          alt="Surfer Banner"
+        />
+      </div>
+      <h1>Beach Surf Spot Database</h1>
+    </header>
+
+    <main>
+      {% for message in get_flashed_messages() %}
+      <div class="alert">{{ message }}</div>
+      {% endfor %} {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+      <p>&copy; 2023 Beach Surf Spot Database</p>
+    </footer>
+  </body>
+</html>
