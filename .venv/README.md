@@ -1,131 +1,162 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Beach Surf Spot Database
 
-Welcome USER_NAME,
+A simple web application for surfers to catalog and track information about different surf beaches.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+![Beach Surf Database Screenshot](static/img/banner.jpg)
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
+## Project Development & Planning
 
-## Gitpod Reminders
+### Project Goals
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+- Create a user-friendly database for surfers to document beach spots
+- Allow users to categorize beaches by wave type, spot type, and conditions
+- Provide a simple interface for creating, reading, updating, and deleting beach entries
+- Help surfers plan trips based on their skill level and preferred conditions
 
-`python3 -m http.server`
+### Background
 
-A blue button should appear to click: _Make Public_,
+Surfers often keep mental notes or personal records about various beaches they've visited or want to visit. This application aims to digitize this process, making it easier to remember details about each location. Whether you're a beginner looking for suitable spots or an expert searching for challenging waves, having well-organized information can enhance your surfing experience.
 
-Another blue button should appear to click: _Open Browser_.
+### User Stories
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+- As a surfer, I want to store information about beaches I've visited so I can remember the conditions
+- As a traveling surfer, I want to document new spots I discover so I can share them with friends
+- As a beginner, I want to filter beaches by difficulty level so I can find suitable locations
+- As an experienced surfer, I want to categorize beaches by wave type so I can find spots that match my preferences
+- As a user, I want a simple interface that allows me to quickly add or update beach information
 
-A blue button should appear to click: _Make Public_,
+### Market Review
 
-Another blue button should appear to click: _Open Browser_.
+While there are several surf forecasting apps available (Surfline, MagicSeaweed, etc.), most focus on current conditions rather than allowing users to build their own database of spots with personalized notes. This application fills a gap for surfers who want to maintain their own records rather than relying solely on public information.
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+## Scope and Structure
 
-To log into the Heroku toolbelt CLI:
+### Scope
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+The application provides core CRUD functionality for beach entries with the following data points:
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+- Beach name
+- Spot type (reef, point, beach)
+- Wave direction (left, right, both)
+- Offshore wind direction (N, S, E, W)
+- Optimal tide conditions (low, mid, high)
+- Skill level required (beginner, intermediate, expert, all)
 
-### Connecting your Mongo database
+### Structure
 
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
+The application follows a simple structure:
 
-------
+- Main page (index): Displays all beaches in a table format with options to add, edit, or delete entries
+- Add page: Form to create new beach entries
+- Edit page: Pre-populated form to modify existing beach entries
+- Database: SQLite database to store all beach information
 
-## Release History
+### Future Developments
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+Potential enhancements for future versions:
 
-**June 18, 2024,** Add Mongo back into template
+- User authentication for personal beach collections
+- Image upload capability for beach photos
+- Rating system for beach quality
+- Weather API integration for current conditions
+- Map integration to visualize beach locations
+- Advanced filtering and search capabilities
+- Mobile-responsive design improvements
+- Social sharing features
 
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
+## Wireframes – Skeleton
 
-**May 28 2024:** Fix Mongo and Links installs
+The application follows a simple three-page design:
 
-**April 26 2024:** Update node version to 16
+1. Main page - Table view of all beaches with action buttons
+2. Add beach form - Input fields for all beach attributes
+3. Edit beach form - Pre-populated fields for updating beach information
 
-**September 20 2023:** Update Python version to 3.9.17.
+Each page maintains the consistent header with the surf banner image and title.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+## Design & Layout
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+### Colors and Fonts
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+The color scheme is based on ocean blues and white:
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+- Primary blue: #2196f3 - Used for header, buttons, and accents
+- Dark blue: #0d47a1 - Used for hover states and primary buttons
+- Light blue background: #f5f9ff - Creates a fresh, airy feeling reminiscent of the beach
+- White: #ffffff - Used for content areas and forms
+- Table header blue: #2196f3 - Creates visual separation for data
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+Typography:
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+- Arial, sans-serif: Clean, readable font that works well across devices
+- Buttons and interactive elements feature slightly bolder text
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+## Deployment
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+### Local Deployment
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+1. Clone the repository
+2. Install required dependencies:
+   ```
+   pip install flask
+   ```
+3. Run the application:
+   ```
+   python app.py
+   ```
+4. Access the application at http://127.0.0.1:5000
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+### Production Deployment
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+For a production environment:
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+1. Set `debug=False` in app.py
+2. Consider using a production WSGI server like Gunicorn
+3. For public hosting, platforms like Heroku, PythonAnywhere, or AWS can be used:
+   - Create a requirements.txt file: `pip freeze > requirements.txt`
+   - Create a Procfile (for Heroku): `web: gunicorn app:app`
+   - Deploy according to the platform's instructions
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+## Technologies Used
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+- **Python**: Core programming language
+- **Flask**: Web framework for routing and templating
+- **SQLite**: Database for storing beach information
+- **HTML/CSS**: Frontend structure and styling
+- **JavaScript**: Minimal use for confirmation dialogs
+- **Git**: Version control
+- **SQLAlchemy** (future improvement): For more robust database interactions
 
-------
+## Validation & Testing
 
-## FAQ about the uptime script
+### Manual Testing Procedures
 
-**Why have you added this script?**
+- Form Validation: Tested required fields and dropdown selections
+- CRUD Operations: Verified all create, read, update, and delete functions
+- Responsive Design: Tested on various screen sizes
+- Browser Compatibility: Tested on Chrome, Firefox, Safari, and Edge
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+### Validation
 
-**How will this affect me?**
+- HTML validation using W3C Markup Validation Service
+- CSS validation using W3C CSS Validation Service
+- Python validation using PEP8 online checker
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+### Known Issues
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+- Currently no user authentication - all users can modify all data
+- No confirmation for successful operations (future improvement)
+- Limited responsiveness on very small mobile screens
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+## Credits
 
-**So….?**
+- Flask documentation: https://flask.palletsprojects.com/
+- SQLite documentation: https://www.sqlite.org/docs.html
+- Design inspiration from various surf websites and applications
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+## Thanks
 
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+- Thanks to all the surf communities who inspired this project
+- Special appreciation to all test users who provided feedback – Vinny, Pob, Sam.
 
 ---
-
-Happy coding!
