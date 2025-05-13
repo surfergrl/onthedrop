@@ -1,21 +1,3 @@
-Project Development & Planning
-Project Goals
-Background
-User Stories
-Market Review
-Scope and Structure
-Scope
-Structure
-Future developments
-Wireframes – Skeleton
-Design & Layout
-Colours and fonts
-Deployment
-Technologies Used
-Validation & Testing
-Credits
-Thanks
-
 # Beach Surf Spot Database
 
 ## Kat Dawes
@@ -25,6 +7,23 @@ A simple web application for surfers to catalog and track information about diff
 This project is my third submission for the Code Institute Web Application Development course.
 
 ![Beach Surf Database Screenshot](static/img/banner.jpg)
+
+- Project Development & Planning - Project Goals
+- Background
+- - User Stories
+    Market Review
+- Scope and Structure
+  - Scope
+  - Structure
+- Future developments
+  – Skeleton
+- Design & Layout
+  - Colours and fonts
+- Deployment
+- Technologies Used
+- Validation & Testing
+- Credits
+- Thanks
 
 ## Project Development & Planning
 
@@ -174,12 +173,12 @@ For a production environment:
 
 - Flask documentation: https://flask.palletsprojects.com/
 - SQLite documentation: https://www.sqlite.org/docs.html
-- Design inspiration from various surf websites and applications
+- Design inspiration from Surfline, The Inertia and WSL websites
 
 ## Thanks
 
 - Thanks to all the surf communities who inspired this project
-- Special appreciation to all test users who provided feedback
-- Thanks to surf photographers who share their work and passion
+- Special appreciation to all test users who provided feedback - Sam, Vinny, Pob
+- Thanks to Oisin and Roman for help with virtual environments and package compatibility
 
 ---
