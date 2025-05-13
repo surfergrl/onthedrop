@@ -84,8 +84,9 @@ Potential enhancements for future versions:
 - Advanced filtering and search capabilities
 - Mobile-responsive design improvements
 - Social sharing features
+- More options for recording personal sessions – board used, weather conditions, wave caught etc.
 
-## Wireframes – Skeleton
+## Skeleton
 
 The application follows a simple three-page design:
 
@@ -129,14 +130,15 @@ Typography:
 
 ### Production Deployment
 
-For a production environment:
+Heroku
 
 1. Set `debug=False` in app.py
-2. Consider using a production WSGI server like Gunicorn
-3. For public hosting, platforms like Heroku, PythonAnywhere, or AWS can be used:
-   - Create a requirements.txt file: `pip freeze > requirements.txt`
-   - Create a Procfile (for Heroku): `web: gunicorn app:app`
-   - Deploy according to the platform's instructions
+2. Create app in Heroku
+3. Create config variables
+4. Link git to Heroku
+5. Create a requirements.txt file and Python version file
+6. Create Procfule
+7. The application is available at https://onthedrop-f85390978add.herokuapp.com/
 
 ## Technologies Used
 
@@ -174,11 +176,12 @@ For a production environment:
 - Flask documentation: https://flask.palletsprojects.com/
 - SQLite documentation: https://www.sqlite.org/docs.html
 - Design inspiration from Surfline, The Inertia and WSL websites
+- CRUD database tutorials: https://budibase.com/blog/crud-app/ https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/actions-crud and https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.youtube.com/watch%3Fv%3DayAX10M8b3Q&ved=2ahUKEwizjPnq3qCNAxULRfEDHTiZF0AQwqsBegQIDBAF&usg=AOvVaw0g6ltwN_oxxdGDY3xxwZdY
 
 ## Thanks
 
-- Thanks to all the surf communities who inspired this project
+- Thanks to the local surf community who inspired this project
 - Special appreciation to all test users who provided feedback - Sam, Vinny, Pob
-- Thanks to Oisin and Roman for help with virtual environments and package compatibility
+- Thanks to Oisin and Roman for webinar on virtual environments and package compatibility
 
 ---
