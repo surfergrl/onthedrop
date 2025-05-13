@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Edit Beach</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="name">Beach Name</label>
+            <input type="text" name="name" id="name" value="{{ beach['name'] }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="spot_type">Spot Type</label>
+            <select name="spot_type" id="spot_type">
+                <option value="reef" {% if beach['spot_type'] == 'reef' %}selected{% endif %}>Reef</option>
+                <option value="point" {% if beach['spot_type'] == 'point' %}selected{% endif %}>Point</option>
+                <option value="beach" {% if beach['spot_type'] == 'beach' %}selected{% endif %}>Beach</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="wave">Wave</label>
+            <select name="wave" id="wave">
+                <option value="left" {% if beach['wave'] == 'left' %}selected{% endif %}>Left</option>
+                <option value="right" {% if beach['wave'] == 'right' %}selected{% endif %}>Right</option>
+                <option value="both" {% if beach['wave'] == 'both' %}selected{% endif %}>Both</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="offshore">Offshore</label>
+            <select name="offshore" id="offshore">
+                <option value="N" {% if beach['offshore'] == 'N' %}selected{% endif %}>North (N)</option>
+                <option value="S" {% if beach['offshore'] == 'S' %}selected{% endif %}>South (S)</option>
+                <option value="E" {% if beach['offshore'] == 'E' %}selected{% endif %}>East (E)</option>
+                <option value="W" {% if beach['offshore'] == 'W' %}selected{% endif %}>West (W)</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="tide">Tide</label>
+            <select name="tide" id="tide">
+                <option value="low" {% if beach['tide'] == 'low' %}selected{% endif %}>Low</option>
+                <option value="mid" {% if beach['tide'] == 'mid' %}selected{% endif %}>Mid</option>
+                <option value="high" {% if beach['tide'] == 'high' %}selected{% endif %}>High</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="level">Level</label>
+            <select name="level" id="level">
+                <option value="beginner" {% if beach['level'] == 'beginner' %}selected{% endif %}>Beginner</option>
+                <option value="intermediate" {% if beach['level'] == 'intermediate' %}selected{% endif %}>Intermediate</option>
+                <option value="expert" {% if beach['level'] == 'expert' %}selected{% endif %}>Expert</option>
+                <option value="all" {% if beach['level'] == 'all' %}selected{% endif %}>All</option>
+            </select>
+        </div>
+        
+        <div class="form-actions">
+            <a href="{{ url_for('index') }}" class="btn">Cancel</a>
+            <button type="submit" class="btn primary">Save</button>
+        </div>
+    </form>
+{% endblock %}

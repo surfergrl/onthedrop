@@ -1,0 +1,61 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Add New Beach</h2>
+<form method="post">
+  <div class="form-group">
+    <label for="name">Beach Name</label>
+    <input type="text" name="name" id="name" required />
+  </div>
+
+  <div class="form-group">
+    <label for="spot_type">Spot Type</label>
+    <select name="spot_type" id="spot_type">
+      <option value="reef">Reef</option>
+      <option value="point">Point</option>
+      <option value="beach">Beach</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="wave">Wave</label>
+    <select name="wave" id="wave">
+      <option value="left">Left</option>
+      <option value="right">Right</option>
+      <option value="both">Both</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="offshore">Offshore</label>
+    <select name="offshore" id="offshore">
+      <option value="N">North (N)</option>
+      <option value="S">South (S)</option>
+      <option value="E">East (E)</option>
+      <option value="W">West (W)</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="tide">Tide</label>
+    <select name="tide" id="tide">
+      <option value="low">Low</option>
+      <option value="mid">Mid</option>
+      <option value="high">High</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="level">Level</label>
+    <select name="level" id="level">
+      <option value="beginner">Beginner</option>
+      <option value="intermediate">Intermediate</option>
+      <option value="expert">Expert</option>
+      <option value="all">All</option>
+    </select>
+  </div>
+
+  <div class="form-actions">
+    <a href="{{ url_for('index') }}" class="btn">Cancel</a>
+    <button type="submit" class="btn primary">Save</button>
+  </div>
+</form>
+{% endblock %}
