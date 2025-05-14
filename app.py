@@ -3,7 +3,14 @@ import sqlite3
 import os
 
 app = Flask(__name__)
-app.secret_key = 'surfersecretkey'
+
+if __name__ == "__main__":
+    app.run(
+        host=os.environ.get("IP"),
+        port=int(os.environ.get("PORT")),
+        debug=os.environ.get("DEBUG")
+        SECRET_KEY=os.environ.get("SECRET_KEY")
+    )
 
 # Database initialization
 def get_db_connection():
@@ -96,10 +103,3 @@ def delete(id):
     conn.commit()
     conn.close()
     return redirect(url_for('index'))
-
-if __name__ == '__main__':
-    app.run(debug=False)
-
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
