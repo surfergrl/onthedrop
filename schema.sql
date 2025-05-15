@@ -1,12 +1,10 @@
-DROP TABLE IF EXISTS beaches;
-
-CREATE TABLE beaches (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+-- schema.sql for PostgreSQL
+CREATE TABLE IF NOT EXISTS beaches (
+    id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    spot_type TEXT NOT NULL,
-    wave TEXT NOT NULL,
-    offshore TEXT NOT NULL,
-    tide TEXT NOT NULL,
-    level TEXT NOT NULL,
-    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    spot_type TEXT,
+    wave TEXT,
+    offshore TEXT,
+    tide TEXT,
+    level TEXT
 );
