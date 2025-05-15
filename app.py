@@ -1,36 +1,43 @@
+from flask import Flask, render_template, request, redirect, url_for, flash
 import os
+import psycopg2
+from psycopg2.extras import DictCursor
 
-# Import environment variables from env.py if available
+# Import environment variables if in development
 try:
     import env
 except ImportError:
-    pass
-
-from flask import Flask, render_template, request, redirect, url_for, flash
-import sqlite3
+    pass  # In production, env vars are set on the platform
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")
 
-if __name__ == "__main__":
-    app.run(
-        host=os.environ.get("IP"),
-        port=int(os.environ.get("PORT")),
-        debug=os.environ.get("DEBUG"),
-    )
-
-# Database initialization
+# Database connection
 def get_db_connection():
-    conn = sqlite3.connect('beaches.db')
-    conn.row_factory = sqlite3.Row
+    conn = psycopg2.connect(os.environ.get('DATABASE_URL'))
+    conn.cursor_factory = DictCursor
     return conn
 
 def init_db():
-    if not os.path.exists('beaches.db'):
-        conn = get_db_connection()
-        with open('schema.sql') as f:
-            conn.executescript(f.read())
-        conn.close()
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    # Create beaches table if it doesn't exist
+    cur.execute('''
+        CREATE TABLE IF NOT EXISTS beaches (
+            id SERIAL PRIMARY KEY,
+            name TEXT NOT NULL,
+            spot_type TEXT,
+            wave TEXT,
+            offshore TEXT,
+            tide TEXT,
+            level TEXT
+        );
+    ''')
+    
+    conn.commit()
+    cur.close()
+    conn.close()
 
 # Workaround for before_first_request issue
 first_request = True
@@ -47,7 +54,10 @@ def initialize_db():
 @app.route('/')
 def index():
     conn = get_db_connection()
-    beaches = conn.execute('SELECT * FROM beaches').fetchall()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM beaches')
+    beaches = cur.fetchall()
+    cur.close()
     conn.close()
     return render_template('index.html', beaches=beaches)
 
@@ -65,11 +75,13 @@ def add():
             flash('Beach name is required!')
         else:
             conn = get_db_connection()
-            conn.execute(
-                'INSERT INTO beaches (name, spot_type, wave, offshore, tide, level) VALUES (?, ?, ?, ?, ?, ?)',
+            cur = conn.cursor()
+            cur.execute(
+                'INSERT INTO beaches (name, spot_type, wave, offshore, tide, level) VALUES (%s, %s, %s, %s, %s, %s)',
                 (name, spot_type, wave, offshore, tide, level)
             )
             conn.commit()
+            cur.close()
             conn.close()
             return redirect(url_for('index'))
     
@@ -78,7 +90,10 @@ def add():
 @app.route('/<int:id>/edit', methods=('GET', 'POST'))
 def edit(id):
     conn = get_db_connection()
-    beach = conn.execute('SELECT * FROM beaches WHERE id = ?', (id,)).fetchone()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM beaches WHERE id = %s', (id,))
+    beach = cur.fetchone()
+    cur.close()
     conn.close()
     
     if request.method == 'POST':
@@ -93,11 +108,13 @@ def edit(id):
             flash('Beach name is required!')
         else:
             conn = get_db_connection()
-            conn.execute(
-                'UPDATE beaches SET name = ?, spot_type = ?, wave = ?, offshore = ?, tide = ?, level = ? WHERE id = ?',
+            cur = conn.cursor()
+            cur.execute(
+                'UPDATE beaches SET name = %s, spot_type = %s, wave = %s, offshore = %s, tide = %s, level = %s WHERE id = %s',
                 (name, spot_type, wave, offshore, tide, level, id)
             )
             conn.commit()
+            cur.close()
             conn.close()
             return redirect(url_for('index'))
     
@@ -106,7 +123,16 @@ def edit(id):
 @app.route('/<int:id>/delete', methods=('POST',))
 def delete(id):
     conn = get_db_connection()
-    conn.execute('DELETE FROM beaches WHERE id = ?', (id,))
+    cur = conn.cursor()
+    cur.execute('DELETE FROM beaches WHERE id = %s', (id,))
     conn.commit()
+    cur.close()
     conn.close()
     return redirect(url_for('index'))
+
+if __name__ == "__main__":
+    app.run(
+        host=os.environ.get("IP", "0.0.0.0"),
+        port=int(os.environ.get("PORT", 5000)),
+        debug=os.environ.get("DEBUG") == "True"
+    )
