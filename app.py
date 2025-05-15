@@ -12,6 +12,13 @@ except ImportError:
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")
 
+if __name__ == "__main__":
+    app.run(
+        host=os.environ.get("IP"),
+        port=int(os.environ.get("PORT")),
+        debug=os.environ.get("DEBUG"),
+    )
+
 # Database connection
 def get_db_connection():
     conn = psycopg2.connect(os.environ.get('DATABASE_URL'))
@@ -129,10 +136,3 @@ def delete(id):
     cur.close()
     conn.close()
     return redirect(url_for('index'))
-
-if __name__ == "__main__":
-    app.run(
-        host=os.environ.get("IP", "0.0.0.0"),
-        port=int(os.environ.get("PORT", 5000)),
-        debug=os.environ.get("DEBUG") == "True"
-    )
