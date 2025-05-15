@@ -1,7 +1,13 @@
+import os
+
+# Import environment variables from env.py if available
+try:
+    import env
+except ImportError:
+    pass
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 import sqlite3
-import os 
-import env
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")
